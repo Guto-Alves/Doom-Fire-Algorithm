@@ -1,8 +1,8 @@
 # Doom Fire Algorithm
-Creating the fire effect from DOOM in Java using an array of JButtons.
+Creating the fire effect from DOOM in Java.
 
 <p align="left">
-   <img src="https://user-images.githubusercontent.com/48946749/57987003-454b9900-7a52-11e9-9254-006cd42b8056.gif" width="490">
+   <img src="https://user-images.githubusercontent.com/48946749/70873920-998a0d80-1f8e-11ea-8b29-5eb308201cc9.gif" width="490">
 </p>
 
 - [Click here for the Video tutorial](https://www.youtube.com/watch?v=HCjDjsHPOco)
