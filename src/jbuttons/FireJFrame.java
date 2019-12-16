@@ -1,3 +1,5 @@
+package jbuttons;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -11,7 +13,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class FireFrame extends JFrame implements ActionListener {
+public class FireJFrame extends JFrame implements ActionListener {
+	private static final long serialVersionUID = 5153894942303340131L;
+
 	private JButton[] firePixelsArray;
 
 	private int fireWidth = 60;
@@ -38,7 +42,7 @@ public class FireFrame extends JFrame implements ActionListener {
 
 	private final SecureRandom random = new SecureRandom();
 
-	public FireFrame() {
+	public FireJFrame() {
 		super("Fire of DOOM");
 
 		start();
@@ -48,7 +52,7 @@ public class FireFrame extends JFrame implements ActionListener {
 	public void initializeWindButtons() {
 		JPanel optionsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
-		JButton windLeft = new JButton("Wind Left");
+		JButton windLeft = new JButton("Left");
 		windLeft.addActionListener(new ActionListener() {
 
 			@Override
@@ -58,7 +62,7 @@ public class FireFrame extends JFrame implements ActionListener {
 			}
 		});
 
-		JButton windCenter = new JButton("Wind Center");
+		JButton windCenter = new JButton("Center");
 		windCenter.addActionListener(new ActionListener() {
 
 			@Override
@@ -68,7 +72,7 @@ public class FireFrame extends JFrame implements ActionListener {
 			}
 		});
 
-		JButton windRigth = new JButton("Wind Rigth");
+		JButton windRigth = new JButton("Right");
 		windRigth.addActionListener(new ActionListener() {
 
 			@Override
@@ -138,43 +142,40 @@ public class FireFrame extends JFrame implements ActionListener {
 
 		if (belowPixelIndex >= fireWidth * fireHeigth)
 			return;
-		else {
-			int decay = random.nextInt(3);
-			int belowPixelFireIntensity = Integer.parseInt(firePixelsArray[belowPixelIndex].getText());
-			int newFireIntensity = belowPixelFireIntensity - decay >= 0 ? belowPixelFireIntensity - decay : 0;
 
-			switch (wind) {
-			case LEFT:
-				try {
-					firePixelsArray[currentPixelIndex - decay].setText("" + newFireIntensity);
-					firePixelsArray[currentPixelIndex - decay].setBackground(fireColorsPalette[newFireIntensity]);
-					firePixelsArray[currentPixelIndex - decay].setForeground(fireColorsPalette[newFireIntensity]);
-				} catch (Exception e) {
-					firePixelsArray[currentPixelIndex].setText("" + newFireIntensity);
-					firePixelsArray[currentPixelIndex].setBackground(fireColorsPalette[newFireIntensity]);
-					firePixelsArray[currentPixelIndex].setForeground(fireColorsPalette[newFireIntensity]);
-				}
-				break;
-			case CENTER:
+		int decay = random.nextInt(3);
+		int belowPixelFireIntensity = Integer.parseInt(firePixelsArray[belowPixelIndex].getText());
+		int newFireIntensity = belowPixelFireIntensity - decay >= 0 ? belowPixelFireIntensity - decay : 0;
+
+		switch (wind) {
+		case LEFT:
+			try {
+				firePixelsArray[currentPixelIndex - decay].setText("" + newFireIntensity);
+				firePixelsArray[currentPixelIndex - decay].setBackground(fireColorsPalette[newFireIntensity]);
+				firePixelsArray[currentPixelIndex - decay].setForeground(fireColorsPalette[newFireIntensity]);
+			} catch (Exception e) {
 				firePixelsArray[currentPixelIndex].setText("" + newFireIntensity);
 				firePixelsArray[currentPixelIndex].setBackground(fireColorsPalette[newFireIntensity]);
 				firePixelsArray[currentPixelIndex].setForeground(fireColorsPalette[newFireIntensity]);
-				break;
-			case RIGHT:
-				try {
-					firePixelsArray[currentPixelIndex + decay].setText("" + newFireIntensity);
-					firePixelsArray[currentPixelIndex + decay].setBackground(fireColorsPalette[newFireIntensity]);
-					firePixelsArray[currentPixelIndex + decay].setForeground(fireColorsPalette[newFireIntensity]);
-				} catch (Exception e) {
-					firePixelsArray[currentPixelIndex].setText("" + newFireIntensity);
-					firePixelsArray[currentPixelIndex].setBackground(fireColorsPalette[newFireIntensity]);
-					firePixelsArray[currentPixelIndex].setForeground(fireColorsPalette[newFireIntensity]);
-				}
-				break;
-
 			}
+			break;
+		case CENTER:
+			firePixelsArray[currentPixelIndex].setText("" + newFireIntensity);
+			firePixelsArray[currentPixelIndex].setBackground(fireColorsPalette[newFireIntensity]);
+			firePixelsArray[currentPixelIndex].setForeground(fireColorsPalette[newFireIntensity]);
+			break;
+		case RIGHT:
+			try {
+				firePixelsArray[currentPixelIndex + decay].setText("" + newFireIntensity);
+				firePixelsArray[currentPixelIndex + decay].setBackground(fireColorsPalette[newFireIntensity]);
+				firePixelsArray[currentPixelIndex + decay].setForeground(fireColorsPalette[newFireIntensity]);
+			} catch (Exception e) {
+				firePixelsArray[currentPixelIndex].setText("" + newFireIntensity);
+				firePixelsArray[currentPixelIndex].setBackground(fireColorsPalette[newFireIntensity]);
+				firePixelsArray[currentPixelIndex].setForeground(fireColorsPalette[newFireIntensity]);
+			}
+			break;
 		}
-
 	}
 
 	@Override
